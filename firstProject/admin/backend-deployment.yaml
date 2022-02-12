@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+    spec:
+      containers:
+      - args:
+        - python
+        - manage.py
+        - runserver
+        - 0.0.0.0:8000
+        image: backend
+        imagePullPolicy: ""
+        name: backend
+        ports:
+        - containerPort: 8000
+      restartPolicy: Always
