@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+  name: queue
+spec:
+  replicas: 1
+  selector:
+      labels:
+        io.kompose.service: queue
+    spec:
+      containers:
+      - args:
+        - python
+        - consumer.py
+        image: queue
+        imagePullPolicy: ""
+        name: queue
+      restartPolicy: Always
