@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-deployment
+  labels:
+    app: react-app
+spec:
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: react-app-container
+        image: 802103862232.dkr.ecr.ap-south-1.amazonaws.com/react-crud_backend:latest
+        command:
+        args:
+          - sh
+          - -c
+          - npm start 
+        ports:
+        - containerPort: 3000	
+      imagePullSecrets:
+      - name: ap-south-1-ecr-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-app-service
+spec:
+  type: NodePort
+  selector:
+    app: react-app
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    nodePort: 32000
