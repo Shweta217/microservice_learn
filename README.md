@@ -3,6 +3,7 @@
 1) download aws cli and helm and configure aws cli on putty
 
 2) take ecr login: refer https://blog.dbi-services.com/how-to-push-an-image-into-amazon-ecr-with-docker/#:~:text=8%20Steps%20To%20Push%20An%20Image%20Into%20Amazon,the%20image%20and%20the%20repository%20from%20Amazon%20
+
   i) aws ecr get-login --region ap-south-1 > text.txt
   ii) cat text.txt
   iii) docker login -u AWS https://aws_account_id.dkr.ecr.ap-south-1.amazonaws.com
