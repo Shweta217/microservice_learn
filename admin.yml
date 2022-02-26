@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-app-deployment
+  labels:
+    app: admin-app
+spec:
+  selector:
+    matchLabels:
+      app: admin-app
+  template:
+    metadata:
+      labels:
+        app: admin-app
+    spec:
+      containers:
+      - name: admin-app-container
+        image: 802103862232.dkr.ecr.ap-south-1.amazonaws.com/admin_backend:latest
+        command:
+        args:
+          - sh
+          - -c
+          - python
+          - manage.py
+          - runserver
+          - 0.0.0.0:8000 
+        ports:
+        - containerPort: 8000	
+      imagePullSecrets:
+      - name: ap-south-1-ecr-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-app-service
+spec:
+  type: NodePort
+  selector:
+    app: admin-app
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+    nodePort: 31000
