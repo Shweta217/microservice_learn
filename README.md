@@ -49,3 +49,4 @@
 --approve	
   
 8) use code of alb.yml and react.yml to test the app on https.  
+https://stackoverflow.com/questions/10175812/how-to-generate-a-self-signed-ssl-certificate-using-openssl
